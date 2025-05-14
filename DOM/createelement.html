@@ -1,0 +1,18 @@
+<body>
+  <div id="container"></div>
+</body>
+
+<script>
+  // 1. Create
+  const card = document.createElement("div");
+
+  // 2. Modify
+  card.innerText = "I’m a dynamically created card!";
+  card.className = "card";
+  card.style.padding = "10px";
+  card.style.border = "1px solid #ccc";
+
+  // 3. Append
+  const container = document.getElementById("container");
+  container.appendChild(card);
+</script>
