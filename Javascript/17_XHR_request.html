@@ -1,0 +1,121 @@
+<!-- const XMLHttpRequest = require('xhr2');
+
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "https://jsonplaceholder.typicode.com/users/1", true);
+
+xhr.onload = function () {
+  if (xhr.status === 200) {
+    const data = JSON.parse(xhr.responseText);
+    console.log("User:", data.name);
+  } else {
+    console.error("Failed with status", xhr.status);
+  }
+};
+
+xhr.onerror = function () {
+  console.error("Request failed");
+};
+
+xhr.send(); -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Profile Card</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        background-color: #f4f4f4;
+      }
+
+      input {
+        padding: 10px;
+        width: 250px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+      }
+
+      button {
+        padding: 10px 15px;
+        margin-bottom: 2rem;
+        border: none;
+        background-color: #24292e;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .card {
+        display: none;
+        width: 300px;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        text-align: center;
+      }
+
+      .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+      }
+
+      .name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .followers {
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Enter your GitHub username</h2>
+    <input type="text" id="username" placeholder="e.g. vatsal-gajjar" />
+    <button id="fetchBtn">Get Profile</button>
+
+    <div class="card" id="profileCard">
+      <img id="avatar" class="avatar" src="" alt="User Avatar" />
+      <div class="name" id="name">Name</div>
+      <div class="followers" id="followers">Followers: 0</div>
+    </div>
+
+    <script>
+      const fetchBtn = document.querySelector("#fetchBtn");
+      const avatar = document.querySelector("#avatar");
+      const nameField = document.querySelector("#name");
+      const followers = document.querySelector("#followers");
+
+      fetchBtn.addEventListener("click", () => {
+        const username = document.querySelector("#username").value;
+        const url = `https://api.github.com/users/${username}`;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            const data = JSON.parse(this.responseText);
+            avatar.src = data.avatar_url;
+            nameField.textContent = data.name || data.login;
+            followers.textContent = `Followers: ${data.followers}`;
+            document.querySelector("#profileCard").style.display = "block"; 
+          }
+        };
+
+        xhr.send(); // ✅ This line is essential
+      });
+    </script>
+  </body>
+</html>

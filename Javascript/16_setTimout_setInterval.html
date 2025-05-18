@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color Changer with setInterval</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.5s ease;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click "Start" to change color every second. Click "Stop" to end it.</h1>
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+
+  <script>
+    const body = document.querySelector("body");
+    const startBtn = document.querySelector("#start");
+    const stopBtn = document.querySelector("#stop");
+
+    const colors = ["red", "green", "blue", "orange", "purple"];
+    let index = 0;
+    let intervalId = null;
+
+    startBtn.addEventListener("click", () => {
+      if (intervalId !== null) return;
+
+      intervalId = setInterval(() => {
+        body.style.backgroundColor = colors[index];
+        body.style.color = "white";
+        index = (index + 1) % colors.length;
+      }, 1000);
+    });
+
+    stopBtn.addEventListener("click", () => {
+      clearInterval(intervalId);
+      intervalId = null;
+    });
+  </script>
+</body>
+</html>
