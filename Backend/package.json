@@ -1,0 +1,20 @@
+{
+  "name": "vgbackend",
+  "version": "1.0.0",
+  "description": "A simple application to deploy.",
+  "keywords": [
+    "node",
+    "vg"
+  ],
+  "license": "ISC",
+  "author": "gajjarvatsall",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}
